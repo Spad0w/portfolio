@@ -14,9 +14,9 @@ function TechItem({ tech }: TechItemProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'flex flex-col items-center gap-2 p-3 rounded-xl',
+        'flex flex-col items-center gap-2 p-3 rounded-lg',
         'transition-all duration-300 ease-out',
-        'hover:scale-110 hover:bg-muted/50',
+        'hover:scale-110 hover:bg-surface-high',
         'group'
       )}
       title={tech.name}
@@ -31,7 +31,7 @@ function TechItem({ tech }: TechItemProps) {
           'transition-all duration-300'
         )}
       />
-      <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+      <span className="font-body text-xs text-tertiary group-hover:text-foreground transition-colors">
         {tech.name}
       </span>
     </a>
@@ -49,11 +49,11 @@ interface TechPyramidProps {
 
 function CategoryCard({ category }: { category: CategoryBox }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card/30 p-4">
-      <span className="block text-xs font-medium text-muted-foreground uppercase tracking-wider text-center mb-2">
+    <div className="h-full rounded-lg bg-surface-lowest p-4 shadow-ambient transition-all duration-300 hover:shadow-ambient-lg">
+      <span className="label-sm block text-tertiary text-center mb-2">
         {category.label}
       </span>
-      <div className="flex flex-wrap justify-center gap-1">
+      <div className="flex flex-wrap justify-center gap-1 content-start">
         {category.items.map((techName) => {
           const tech = getTechIcon(techName)
           if (!tech) return null
@@ -79,20 +79,19 @@ export function TechPyramid({ className }: TechPyramidProps) {
 
   return (
     <div className={cn('space-y-6', className)}>
-      <h3 className="text-center text-2xl font-bold sm:text-left">Tech Stack</h3>
+      <h3 className="heading-underline font-display text-2xl font-bold">Tech Stack</h3>
       
-      {/* Desktop: two columns side by side */}
+      {/* Desktop: two columns with matched row heights */}
       <div className="hidden md:grid md:grid-cols-2 md:gap-4">
-        <div className="flex flex-col gap-4">
-          {leftCategories.map((category) => (
-            <CategoryCard key={category.label} category={category} />
-          ))}
-        </div>
-        <div className="flex flex-col gap-4">
-          {rightCategories.map((category) => (
-            <CategoryCard key={category.label} category={category} />
-          ))}
-        </div>
+        {leftCategories.map((leftCat, index) => {
+          const rightCat = rightCategories[index]
+          return (
+            <div key={leftCat.label} className="contents">
+              <CategoryCard category={leftCat} />
+              <CategoryCard category={rightCat} />
+            </div>
+          )
+        })}
       </div>
 
       {/* Mobile: interleaved single column */}

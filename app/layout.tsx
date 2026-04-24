@@ -1,21 +1,24 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Inter_Tight } from 'next/font/google'
+import { Manrope, Plus_Jakarta_Sans } from 'next/font/google'
 
 import './globals.css'
 
-const _geist = Geist({ subsets: ['latin'] })
-const _geistMono = Geist_Mono({ subsets: ['latin'] })
-const interTight = Inter_Tight({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter-tight',
-  weight: ['600'],
+  variable: '--font-manrope',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Developer & Designer',
+  title: 'Eugene | Software Developer & Designer',
   description: 'Showcasing my experiences, projects, and skills as a software developer',
-  generator: 'v0.app',
 }
 
 export default function RootLayout({
@@ -25,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interTight.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${manrope.variable} ${plusJakarta.variable} font-body antialiased`}>{children}</body>
     </html>
   )
 }

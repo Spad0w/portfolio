@@ -10,9 +10,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        display: '-0.02em',
+        label: '0.05em',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        surface: {
+          lowest: 'hsl(var(--surface-lowest))',
+          low: 'hsl(var(--surface-low))',
+          DEFAULT: 'hsl(var(--surface))',
+          high: 'hsl(var(--surface-high))',
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -29,6 +43,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
+        tertiary: 'hsl(var(--tertiary))',
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
@@ -44,23 +59,10 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
+      },
+      boxShadow: {
+        'ambient': '0 8px 32px -4px hsl(var(--primary) / 0.06)',
+        'ambient-lg': '0 16px 48px -8px hsl(var(--primary) / 0.08)',
       },
       borderRadius: {
         lg: 'var(--radius)',

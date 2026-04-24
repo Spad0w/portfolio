@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Badge } from '@/components/ui/badge'
 import { ExternalLink, Github } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -90,18 +89,18 @@ export function ProjectCard({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-500 hover:shadow-2xl"
+      className="group relative overflow-hidden rounded-lg bg-surface-lowest shadow-ambient transition-all duration-500 hover:shadow-ambient-lg hover:bg-surface-low"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Media Section */}
-      <div className="relative h-48 overflow-hidden bg-muted">
+      <div className="relative h-48 overflow-hidden bg-surface">
         {renderMedia()}
         
         {/* Overlay on hover */}
         <div
           className={cn(
-            'absolute inset-0 bg-foreground/90 backdrop-blur-sm transition-opacity duration-300 flex items-center justify-center gap-3',
+            'absolute inset-0 bg-secondary/90 backdrop-blur-sm transition-opacity duration-300 flex items-center justify-center gap-3',
             isHovered ? 'opacity-100' : 'opacity-0'
           )}
         >
@@ -110,7 +109,7 @@ export function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-background text-foreground transition-transform hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform hover:scale-110"
             >
               <Github className="h-5 w-5" />
             </a>
@@ -120,7 +119,7 @@ export function ProjectCard({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-background text-foreground transition-transform hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform hover:scale-110"
             >
               <ExternalLink className="h-5 w-5" />
             </a>
@@ -131,25 +130,24 @@ export function ProjectCard({
       {/* Content Section */}
       <div className="space-y-4 p-6">
         <div className="space-y-2">
-          <h3 className="text-2xl font-bold transition-colors group-hover:text-foreground/80">
+          <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-primary">
             {title}
           </h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className="font-body text-sm text-tertiary">{description}</p>
         </div>
 
-        <p className="text-sm leading-relaxed text-muted-foreground">
+        <p className="font-body text-sm leading-relaxed text-muted-foreground">
           {longDescription}
         </p>
 
         <div className="flex flex-wrap gap-2 pt-2">
           {technologies.map((tech) => (
-            <Badge
+            <span
               key={tech}
-              variant="secondary"
-              className="text-xs font-normal"
+              className="font-body text-xs bg-surface-high text-tertiary px-2 py-1 rounded"
             >
               {tech}
-            </Badge>
+            </span>
           ))}
         </div>
       </div>
