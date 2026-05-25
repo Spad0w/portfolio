@@ -14,12 +14,14 @@ export const personalInfo = {
 
 export const about = {
   introduction: [
-    'Hi, my name is Eugene and I am a highly ambitious and driven Software Engineer based in Singapore.',
-    'I am passionate about creating innovative solutions and building impactful products.',
-    'Leveraging my diverse experience in full-stack development and machine learning engineering, I thrive in dynamic Agile environments where I can leverage modern technologies to solve complex problems.',
-    'Proven expertise in modern tech stacks, complemented by years of developing impactful projects, showcasing collaboration and innovation.',
+    'I am an ambitious and driven Software Engineer based in Singapore, with a passion for creating innovative solutions and building impactful products.',
+    'I am also a Computer Science graduate from the University of Adelaide, where I gained strong fundamentals in full-stack development and machine learning engineering.',
+    'Building projects and solutions across diverse domains from AI-powered to web applications over 4+ years, I was able to hone my expertise in modern tech stacks.',
+    '',  
+    'My experience spans across both technical and non-technical realms, complemented with international exposure, within Agile environments, allowing me to develop a better understanding of user needs. I believe in building solutions that can achieve a balance between delivering great UX and code that scales.',
+    'Outside of tech, I enjoy travelling 🏔️ and meeting new people 🌏. Feel free to reach out if you have any idea you want to explore together or simply want to chat about tech! 💡',
     // 'I build accessible, pixel-perfect digital experiences for the web.'
-  ],
+  ], 
   quote: 'Every new opportunity is a chance for me to craft a future that challenges the status quo.',
 }
 
@@ -49,49 +51,59 @@ export const education = [
     period: '2021 - 2025',
     description: 'Major in Artificial Intelligence and Software Engineering',
     achievements: [
-      'GPA: 6.75/7.0',
-      'Relevant coursework: Data Structures, Algorithms, Machine Learning, Web Development',
+      'Relevant coursework: Data Structures and Algorithms, Machine Learning, Artificial Intelligence,'+
+      'Operating Systems, Web Development',
     ],
   },
 ]
 
 export const universityRoles = [
-  {
-    title: 'Teaching Assistant',
-    course: 'Programming Methodology',
-    period: 'Aug 2023 - Dec 2023',
-    description: 'Teaching Assistant for a class of 15 students',
-    responsibilities: [
-      'Conducted weekly tutorial sessions covering Java programming fundamentals',
-      'Graded assignments and provided detailed feedback on data structures and algorithms',
-      'Held office hours to assist students with debugging and conceptual understanding',
-    ],
-  },
-  {
-    title: 'Teaching Assistant',
-    course: 'Data Management and Visualisation',
-    period: 'Jan 2023 - May 2023',
-    description: 'Teaching Assistant for a class of 35 students',
-    responsibilities: [
-      'Taught SQL query optimization and database design principles',
-      'Created visualization tutorials using Tableau and Python',
-      'Assisted in exam preparation and assignment grading',
-    ],
-  },
-  {
-    title: 'Teaching Assistant',
-    course: 'Enterprise Systems Interface Design',
-    period: 'Aug 2022 - Dec 2022',
-    description: 'Graded a class of 35 for full-stack projects',
-    responsibilities: [
-      'Evaluated full-stack web applications built with modern frameworks',
-      'Provided technical guidance on React, Node.js, and database integration',
-      'Mentored students on software engineering best practices',
-    ],
-  },
+  // {
+  //   title: 'Teaching Assistant',
+  //   course: 'Programming Methodology',
+  //   period: 'Aug 2023 - Dec 2023',
+  //   description: 'Teaching Assistant for a class of 15 students',
+  //   responsibilities: [
+  //     'Conducted weekly tutorial sessions covering Java programming fundamentals',
+  //     'Graded assignments and provided detailed feedback on data structures and algorithms',
+  //     'Held office hours to assist students with debugging and conceptual understanding',
+  //   ],
+  // },
+  // {
+  //   title: 'Teaching Assistant',
+  //   course: 'Data Management and Visualisation',
+  //   period: 'Jan 2023 - May 2023',
+  //   description: 'Teaching Assistant for a class of 35 students',
+  //   responsibilities: [
+  //     'Taught SQL query optimization and database design principles',
+  //     'Created visualization tutorials using Tableau and Python',
+  //     'Assisted in exam preparation and assignment grading',
+  //   ],
+  // },
+  // {
+  //   title: 'Teaching Assistant',
+  //   course: 'Enterprise Systems Interface Design',
+  //   period: 'Aug 2022 - Dec 2022',
+  //   description: 'Graded a class of 35 for full-stack projects',
+  //   responsibilities: [
+  //     'Evaluated full-stack web applications built with modern frameworks',
+  //     'Provided technical guidance on React, Node.js, and database integration',
+  //     'Mentored students on software engineering best practices',
+  //   ],
+  // },
 ]
 
-export const experiences = [
+export type ExperienceItem = {
+  company: string
+  role: string
+  period: string
+  location: string
+  summary?: string
+  achievements: string[]
+  technologies: string[]
+}
+
+export const experiencesWork: ExperienceItem[] = [
   // {
   //   company: 'TikTok/ByteDance',
   //   role: 'Software Engineer',
@@ -209,6 +221,37 @@ export const experiences = [
     ],
     technologies: ['React','JavaScript', 'Material UI', 'Python', 'C'],
   },  
+]
+
+export const experiencesCoCurricular: ExperienceItem[] = [
+  {
+    company: 'Taltech (Tallinn University of Technology)',
+    role: 'University Exchange Program',
+    period: 'Jun 2024 - Jun 2024',
+    location: 'Tallinn, Estonia',
+    summary: '1 of 14 students who participated in a cybersecurity themed exchange program to TalTech',
+    achievements: [
+      'Fine-tuned a honeypot powered by an open-source LLM to mimic realistic web traffic, gaining insight into how attackers probe AI-exposed systems',
+      'Participated in a Capture the Flag (CTF) challenge as part of a team of 3, designing structured adversarial prompt tests on GPT models in a controlled environment and documenting prompt-injection pathways',
+      'Presented practical defenses (prompt guardrails, response filtering) to reduce LLM exploitability to a panel of judges from TalTech and the University of Adelaide',
+      'Worked closely with an international team of students at TalTech to analyze AI-security case studies across Estonia and Australia, producing actionable security insights',
+    ],
+    technologies: ['LLM', 'HTTP', 'AI Security', 'Cybersecurity'],
+  },
+  {
+    company: 'University of Adelaide Singapore Students Association',
+    role: 'Tech Faculty Lead',
+    period: 'Oct 2022 - Oct 2023',
+    location: 'Adelaide, Australia',
+    summary: 'Main Committee member of a student club of over 300 students',
+    achievements: [
+      'Managed and executed decisions as part of a 14-man committee pertaining to the development of the association of over 500 students (UoASSA)', 
+      'Actively led student-life initiatives for the faculty of 50+ students to strengthen cross-cohort and inter-faculty engagement',
+      'Acted as a committee liaison to relay updates from leadership and consolidate feedback from faculty members',
+      'Coordinated with stakeholders in Adelaide and Singapore to support events and seek professional opportunities',
+    ],
+    technologies: ['Leadership', 'Community Building', 'Event Coordination'],
+  },
 ]
 
 export const projects = [

@@ -18,8 +18,7 @@ export default function AboutPage() {
 
           <div className="space-y-6">
             <p className="text-lg leading-relaxed">
-              Hi, my name is <span className="font-semibold text-foreground">Eugene</span> and I
-              am a highly ambitious, self-motivated, and driven Software Engineer.
+              Hi, I am a highly ambitious, self-motivated, and driven Software Engineer.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
               I am passionate about creating innovative solutions and building

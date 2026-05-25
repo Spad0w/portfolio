@@ -9,6 +9,14 @@ const config: Config = {
     '*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1.5rem',
+        lg: '2rem',
+      },
+    },
     extend: {
       fontFamily: {
         display: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
@@ -63,6 +71,7 @@ const config: Config = {
       boxShadow: {
         'ambient': '0 8px 32px -4px hsl(var(--primary) / 0.06)',
         'ambient-lg': '0 16px 48px -8px hsl(var(--primary) / 0.08)',
+        'ambient-xl': '0 24px 64px -8px hsl(var(--primary) / 0.12)',
       },
       borderRadius: {
         lg: 'var(--radius)',

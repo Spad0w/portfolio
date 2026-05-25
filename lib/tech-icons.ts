@@ -101,11 +101,6 @@ export const techIcons: Record<string, TechIcon> = {
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
     url: 'https://opencv.org'
   },
-  'ONNX': {
-    name: 'ONNX',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/onnx/onnx-original.svg',
-    url: 'https://onnx.ai'
-  },
 }
 
 export function getTechIcon(name: string): TechIcon | undefined {

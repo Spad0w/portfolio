@@ -4,7 +4,7 @@ import { ProjectCard } from '@/components/project-card'
 import { TechPyramid } from '@/components/tech-pyramid'
 import { ExperienceTimeline } from '@/app/experience/page'
 import { GraduationCap } from 'lucide-react'
-import { about, education, experiences, projects } from '@/lib/portfolio-data'
+import { about, education, experiencesCoCurricular, experiencesWork, projects } from '@/lib/portfolio-data'
 import { SlideUp } from '@/components/slide-up'
 import { SocialLinks } from '@/components/social-links'
 
@@ -102,7 +102,21 @@ export default function Page() {
             <SlideUp>
               <h2 className="heading-underline font-display text-4xl font-bold tracking-display">Experience</h2>
             </SlideUp>
-            <ExperienceTimeline experiences={experiences} />
+            <div className="space-y-10">
+              <div className="space-y-5">
+                <div className="text-center">
+                  <p className="label-sm text-tertiary">Work Experience</p>
+                </div>
+                <ExperienceTimeline experiences={experiencesWork} />
+              </div>
+
+              <div className="space-y-5">
+                <div className="text-center">
+                  <p className="label-sm text-tertiary">Co-Curricular & Leadership</p>
+                </div>
+                <ExperienceTimeline experiences={experiencesCoCurricular} hideCardTechnologies />
+              </div>
+            </div>
           </div>
         </div>
       </section>

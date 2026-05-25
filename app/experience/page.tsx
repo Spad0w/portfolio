@@ -1,92 +1,190 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { PageWrapper } from '@/components/page-wrapper'
-import { Briefcase, MapPin } from 'lucide-react'
+import { Briefcase, MapPin, X } from 'lucide-react'
 import { SlideUp } from '@/components/slide-up'
-import { experiences } from '@/lib/portfolio-data'
+import { experiencesCoCurricular, experiencesWork, type ExperienceItem } from '@/lib/portfolio-data'
 import { cn } from '@/lib/utils'
 
 interface ExperienceTimelineProps {
-  experiences: {
-    company: string
-    role: string
-    period: string
-    location: string
-    achievements: string[]
-    technologies: string[]
-  }[]
+  experiences: ExperienceItem[]
   className?: string
+  hideCardTechnologies?: boolean
 }
 
-export function ExperienceTimeline({ experiences, className }: ExperienceTimelineProps) {
+export function ExperienceTimeline({ experiences, className, hideCardTechnologies = false }: ExperienceTimelineProps) {
+  const [selected, setSelected] = useState<ExperienceItem | null>(null)
+
   return (
-    <div className={cn('relative', className)} style={{ paddingLeft: '40px' }}>
-      <div
-        className="absolute top-0 bottom-0"
-        style={{
-          left: '14px',
-          width: '2px',
-          background: 'linear-gradient(to bottom, hsl(var(--primary) / 0.5), hsl(var(--surface-high)), hsl(var(--surface-high)), hsl(var(--primary) / 0.5))',
-        }}
-      />
+    <>
+      <div className={cn('relative', className)} style={{ paddingLeft: '40px' }}>
+        <div
+          className="absolute top-0 bottom-0"
+          style={{
+            left: '14px',
+            width: '2px',
+            background: 'linear-gradient(to bottom, hsl(var(--primary) / 0.5), hsl(var(--surface-high)), hsl(var(--surface-high)), hsl(var(--primary) / 0.5))',
+          }}
+        />
 
-      <div className="space-y-10">
-        {experiences.map((exp, index) => (
-          <SlideUp key={index} delay={index * 150}>
-            <div className="relative">
-              <div
-                className="absolute"
-                style={{
-                  left: '-33px',
-                  top: '24px',
-                  width: '16px',
-                  height: '16px',
-                  borderRadius: '50%',
-                  backgroundColor: 'hsl(var(--primary))',
-                  boxShadow: '0 0 0 4px hsl(var(--surface-low)), 0 0 0 6px hsl(var(--primary) / 0.3)',
-                }}
-              />
+        <div className="space-y-10">
+          {experiences.map((exp, index) => (
+            <SlideUp key={index} delay={index * 150}>
+              <div className="relative">
+                <div
+                  className="absolute z-10"
+                  style={{
+                    left: '-33px',
+                    top: '24px',
+                    width: '16px',
+                    height: '16px',
+                    borderRadius: '50%',
+                    backgroundColor: 'hsl(var(--primary))',
+                    boxShadow: '0 0 0 4px hsl(var(--surface-low)), 0 0 0 6px hsl(var(--primary) / 0.3)',
+                  }}
+                />
 
-              <div className="group p-6 rounded-lg bg-surface-lowest shadow-ambient transition-all duration-300 hover:shadow-ambient-lg hover:bg-surface-low">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-primary">
-                      <Briefcase className="h-5 w-5 flex-shrink-0" />
-                      <h3 className="font-display text-xl font-semibold">{exp.role}</h3>
+                <button
+                  type="button"
+                  onClick={() => setSelected(exp)}
+                  className="group block w-full text-left p-6 rounded-lg bg-surface-lowest shadow-ambient transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-ambient-xl hover:bg-surface-low focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 text-primary">
+                        <Briefcase className="h-5 w-5 flex-shrink-0" />
+                        <h3 className="font-display text-xl font-semibold">{exp.role}</h3>
+                      </div>
+                      <h4 className="font-body text-lg font-medium text-foreground">{exp.company}</h4>
+                      <div className="flex items-center gap-1 text-sm text-tertiary">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {exp.location}
+                      </div>
                     </div>
-                    <h4 className="font-body text-lg font-medium text-foreground">{exp.company}</h4>
-                    <div className="flex items-center gap-1 text-sm text-tertiary">
-                      <MapPin className="h-3.5 w-3.5" />
-                      {exp.location}
-                    </div>
-                  </div>
-                  <span className="label-sm rounded-full bg-surface-high px-3 py-1 text-tertiary whitespace-nowrap">
-                    {exp.period}
-                  </span>
-                </div>
-
-                <div className="space-y-2 mb-4">
-                  <ul className="space-y-1.5">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="font-body text-sm text-muted-foreground leading-relaxed flex gap-2">
-                        <span className="text-primary mt-0.5 flex-shrink-0">•</span>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.technologies.map((tech) => (
-                    <span key={tech} className="font-body text-xs bg-surface-high text-tertiary px-2 py-1 rounded">
-                      {tech}
+                    <span className="label-sm rounded-full bg-surface-high px-3 py-1 text-tertiary whitespace-nowrap">
+                      {exp.period}
                     </span>
-                  ))}
-                </div>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    {exp.summary ? (
+                      <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                        {exp.summary}
+                      </p>
+                    ) : (
+                      <ul className="space-y-1.5">
+                        {exp.achievements.map((achievement, i) => (
+                          <li key={i} className="font-body text-sm text-muted-foreground leading-relaxed flex gap-2">
+                            <span className="text-primary mt-0.5 flex-shrink-0">•</span>
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {!hideCardTechnologies && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {exp.technologies.map((tech) => (
+                        <span key={tech} className="font-body text-xs bg-surface-high text-tertiary px-2 py-1 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </button>
               </div>
+            </SlideUp>
+          ))}
+        </div>
+      </div>
+
+      {selected && (
+        <ExperienceModal item={selected} onClose={() => setSelected(null)} />
+      )}
+    </>
+  )
+}
+
+function ExperienceModal({ item, onClose }: { item: ExperienceItem; onClose: () => void }) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKey)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [onClose])
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 animate-in fade-in duration-200">
+      <div
+        className="absolute inset-0 bg-foreground/60 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${item.role} at ${item.company}`}
+        className="relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-surface-lowest p-8 shadow-ambient-xl animate-in zoom-in-95 duration-200"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close dialog"
+          className="absolute top-4 right-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface-high text-tertiary transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6 pr-12">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-primary">
+              <Briefcase className="h-6 w-6 flex-shrink-0" />
+              <h3 className="font-display text-2xl font-semibold">{item.role}</h3>
             </div>
-          </SlideUp>
-        ))}
+            <h4 className="font-body text-xl font-medium text-foreground">{item.company}</h4>
+            <div className="flex items-center gap-1.5 text-sm text-tertiary">
+              <MapPin className="h-4 w-4" />
+              {item.location}
+            </div>
+          </div>
+          <span className="label-sm self-start rounded-full bg-surface-high px-3 py-1 text-tertiary whitespace-nowrap">
+            {item.period}
+          </span>
+        </div>
+
+        <div className="mb-6">
+          <p className="label-sm text-tertiary mb-3">Highlights</p>
+          <ul className="space-y-2">
+            {item.achievements.map((achievement, i) => (
+              <li key={i} className="font-body text-base text-foreground leading-relaxed flex gap-3">
+                <span className="text-primary mt-1 flex-shrink-0">•</span>
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="label-sm text-tertiary mb-3">Technologies & Skills</p>
+          <div className="flex flex-wrap gap-2">
+            {item.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="font-body text-sm bg-surface-high text-foreground px-3 py-1.5 rounded-full"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -152,7 +250,21 @@ export default function ExperiencePage() {
             </p>
           </div>
 
-          <ExperienceTimeline experiences={experiences} />
+          <div className="space-y-10">
+            <div className="space-y-5">
+              <div className="text-center">
+                <p className="label-sm text-tertiary">Work Experience</p>
+              </div>
+              <ExperienceTimeline experiences={experiencesWork} />
+            </div>
+
+            <div className="space-y-5">
+              <div className="text-center">
+                <p className="label-sm text-tertiary">Co-Curricular & Leadership</p>
+              </div>
+              <ExperienceTimeline experiences={experiencesCoCurricular} hideCardTechnologies />
+            </div>
+          </div>
         </div>
       </div>
     </PageWrapper>
