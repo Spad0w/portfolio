@@ -126,7 +126,7 @@ export default function Page() {
         <div className="container py-20">
           <div className="mx-auto max-w-6xl space-y-12">
             <SlideUp>
-              <div className="space-y-4">
+              <div className="space-y-4 text-center">
                 <h2 className="heading-underline font-display text-4xl font-bold tracking-display">Projects</h2>
                 <p className="font-body text-lg text-muted-foreground">
                   A collection of my recent work and side projects
@@ -135,7 +135,7 @@ export default function Page() {
             </SlideUp>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project, index) => (
-                <SlideUp key={index} delay={index * 100}>
+                <SlideUp key={index} delay={index * 100} className="h-full">
                   <ProjectCard {...project} />
                 </SlideUp>
               ))}

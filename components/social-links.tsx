@@ -1,9 +1,9 @@
 import { Github, Linkedin, Mail, FileText } from 'lucide-react'
 
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin, external: true },
-  { label: 'GitHub', href: 'https://github.com', icon: Github, external: true },
-  { label: 'Email', href: 'mailto:your.email@example.com', icon: Mail, external: false },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/eugene-xue', icon: Linkedin, external: true },
+  { label: 'GitHub', href: 'https://github.com/Spad0w/', icon: Github, external: true },
+  { label: 'Email', href: 'mailto:eugenex2000@gmail.com', icon: Mail, external: false },
   { label: 'Resume', href: '/resume.pdf', icon: FileText, external: false },
 ]
 

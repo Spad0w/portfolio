@@ -89,7 +89,7 @@ export function ProjectCard({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-lg bg-surface-lowest shadow-ambient transition-all duration-500 hover:shadow-ambient-lg hover:bg-surface-low"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-surface-lowest shadow-ambient transition-all duration-500 hover:shadow-ambient-lg hover:bg-surface-low"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -128,19 +128,45 @@ export function ProjectCard({
       </div>
 
       {/* Content Section */}
-      <div className="space-y-4 p-6">
-        <div className="space-y-2">
-          <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-primary">
+      <div className="flex flex-1 flex-col space-y-4 p-6">
+        <div className="h-[4.75rem] space-y-2 overflow-hidden">
+          <h3
+            className="font-display text-xl font-semibold leading-snug transition-colors group-hover:text-primary"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
             {title}
           </h3>
-          <p className="font-body text-sm text-tertiary">{description}</p>
+          <p
+            className="font-body text-sm text-tertiary"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
+            {description}
+          </p>
         </div>
 
-        <p className="font-body text-sm leading-relaxed text-muted-foreground">
+        <p
+          className="font-body h-[4.5rem] overflow-hidden text-sm leading-relaxed text-muted-foreground"
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {longDescription}
         </p>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="mt-auto flex flex-wrap gap-2 pt-2">
           {technologies.map((tech) => (
             <span
               key={tech}

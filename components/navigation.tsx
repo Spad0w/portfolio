@@ -28,7 +28,12 @@ export function Navigation() {
           }
         })
       },
-      { threshold: 0.5 }
+      {
+        // Use a narrow activation band near the top of the viewport so
+        // tall sections can still become active while scrolling.
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0,
+      }
     )
 
     navItems.forEach((item) => {
@@ -42,6 +47,7 @@ export function Navigation() {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     setMobileMenuOpen(false)
+    setActiveSection(href.slice(1))
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
