@@ -45,6 +45,7 @@ interface CategoryBox {
 
 interface TechPyramidProps {
   className?: string
+  hideHeading?: boolean
 }
 
 function CategoryCard({ category }: { category: CategoryBox }) {
@@ -64,7 +65,7 @@ function CategoryCard({ category }: { category: CategoryBox }) {
   )
 }
 
-export function TechPyramid({ className }: TechPyramidProps) {
+export function TechPyramid({ className, hideHeading = false }: TechPyramidProps) {
   const leftCategories: CategoryBox[] = [
     { label: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS'] },
     { label: 'Backend', items: ['Node.js', 'Express'] },
@@ -79,8 +80,10 @@ export function TechPyramid({ className }: TechPyramidProps) {
 
   return (
     <div className={cn('space-y-6', className)}>
-      <h3 className="heading-underline font-display text-2xl font-bold">Tech Stack</h3>
-      
+      {!hideHeading ? (
+        <h3 className="heading-underline font-display text-2xl font-bold">Tech Stack</h3>
+      ) : null}
+
       {/* Desktop: two columns with matched row heights */}
       <div className="hidden md:grid md:grid-cols-2 md:gap-4">
         {leftCategories.map((leftCat, index) => {

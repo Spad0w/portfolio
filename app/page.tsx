@@ -2,6 +2,7 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { ProjectCard } from '@/components/project-card'
 import { AboutSection } from '@/components/about-section'
+import { TechPyramid } from '@/components/tech-pyramid'
 import { ExperienceTimeline } from '@/app/experience/page'
 import { experiencesCoCurricular, experiencesWork, projects } from '@/lib/portfolio-data'
 import { SlideUp } from '@/components/slide-up'
@@ -21,9 +22,6 @@ export default function Page() {
                 {'Hi, I\'m '}
                 <span className="text-primary">Eugene</span>
               </h1>
-              <p className="font-body text-xl text-tertiary sm:text-2xl">
-                Software Developer & Designer
-              </p>
             </div>
 
             <p className="font-body text-lg leading-relaxed text-muted-foreground">
@@ -36,6 +34,20 @@ export default function Page() {
       </section>
 
       <AboutSection />
+
+      {/* Tech Stack Section */}
+      <section id="tech-stack" className="flex min-h-screen scroll-snap-section flex-col justify-center">
+        <div className="container py-20">
+          <div className="mx-auto max-w-4xl space-y-12">
+            <SlideUp>
+              <h2 className="heading-underline font-display text-4xl font-bold tracking-display">Tech Stack</h2>
+            </SlideUp>
+            <SlideUp delay={100}>
+              <TechPyramid hideHeading />
+            </SlideUp>
+          </div>
+        </div>
+      </section>
 
       {/* Experience Section */}
       <section id="experience" className="flex min-h-screen scroll-snap-section flex-col justify-center bg-surface-low">

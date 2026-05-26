@@ -1,4 +1,4 @@
-import { Code2, GraduationCap, MapPin, Sparkles, type LucideIcon } from 'lucide-react'
+import { Code2, GraduationCap, MapPin, type LucideIcon } from 'lucide-react'
 import { about, education } from '@/lib/portfolio-data'
 import { SlideUp } from '@/components/slide-up'
 import { cn } from '@/lib/utils'
@@ -100,23 +100,6 @@ export function AboutSection() {
                       {paragraph}
                     </p>
                   ))}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
-                    <h3 className="font-display text-lg font-semibold">Tech Stack</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {about.techHighlights.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-surface-lowest px-3 py-1.5 font-body text-sm text-foreground shadow-ambient transition-colors duration-300 hover:bg-surface-high"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </SlideUp>
