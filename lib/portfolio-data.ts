@@ -13,15 +13,38 @@ export const personalInfo = {
 }
 
 export const about = {
+  subtitle: 'Passionate Developer',
+  location: 'Singapore',
+  locationNote: 'Open to remote opportunities worldwide',
+  focusAreas: {
+    primary: 'Full Stack Development & AI Engineering',
+    secondary: 'Computer Vision, Web Applications, Machine Learning',
+  },
+  techHighlights: [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Python',
+    'Node.js',
+    'Docker',
+    'PostgreSQL',
+    'PyTorch',
+    'TensorFlow',
+    'AWS',
+  ],
+  stats: [
+    { value: '4+', label: 'Years Coding' },
+    { value: '6+', label: 'Projects Completed' },
+    { value: '2', label: 'Companies Worked' },
+    { value: '20+', label: 'Technologies' },
+  ],
   introduction: [
     'I am an ambitious and driven Software Engineer based in Singapore, with a passion for creating innovative solutions and building impactful products.',
     'I am also a Computer Science graduate from the University of Adelaide, where I gained strong fundamentals in full-stack development and machine learning engineering.',
     'Building projects and solutions across diverse domains from AI-powered to web applications over 4+ years, I was able to hone my expertise in modern tech stacks.',
-    '',  
     'My experience spans across both technical and non-technical realms, complemented with international exposure, within Agile environments, allowing me to develop a better understanding of user needs. I believe in building solutions that can achieve a balance between delivering great UX and code that scales.',
     'Outside of tech, I enjoy travelling 🏔️ and meeting new people 🌏. Feel free to reach out if you have any idea you want to explore together or simply want to chat about tech! 💡',
-    // 'I build accessible, pixel-perfect digital experiences for the web.'
-  ], 
+  ],
   quote: 'Every new opportunity is a chance for me to craft a future that challenges the status quo.',
 }
 
