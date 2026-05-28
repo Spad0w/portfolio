@@ -13,7 +13,7 @@ export const personalInfo = {
 }
 
 export const about = {
-  subtitle: 'Passionate Developer',
+  subtitle: 'Software Developer & Designer',
   location: 'Singapore',
   locationNote: 'Open to remote opportunities worldwide',
   focusAreas: {

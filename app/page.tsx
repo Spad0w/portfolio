@@ -22,6 +22,9 @@ export default function Page() {
                 {'Hi, I\'m '}
                 <span className="text-primary">Eugene</span>
               </h1>
+              <p className="font-body text-xl text-tertiary sm:text-2xl">
+                Software Developer & Designer
+              </p>
             </div>
 
             <p className="font-body text-lg leading-relaxed text-muted-foreground">

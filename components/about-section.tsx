@@ -42,9 +42,6 @@ export function AboutSection() {
           <SlideUp>
             <div className="space-y-4 text-center">
               <p className="label-sm text-primary">About Me</p>
-              <h2 className="font-display text-4xl font-bold tracking-display sm:text-5xl">
-                {about.subtitle}
-              </h2>
             </div>
           </SlideUp>
 

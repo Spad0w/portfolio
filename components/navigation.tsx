@@ -18,6 +18,7 @@ const navItems = [
 export function Navigation() {
   const [activeSection, setActiveSection] = useState('home')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,6 +45,27 @@ export function Navigation() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+      const scrollable = scrollHeight - clientHeight
+      if (scrollable <= 0) {
+        setScrollProgress(0)
+        return
+      }
+      setScrollProgress(Math.min(scrollTop / scrollable, 1))
+    }
+
+    updateScrollProgress()
+    window.addEventListener('scroll', updateScrollProgress, { passive: true })
+    window.addEventListener('resize', updateScrollProgress)
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollProgress)
+      window.removeEventListener('resize', updateScrollProgress)
+    }
+  }, [])
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     setMobileMenuOpen(false)
@@ -56,6 +78,13 @@ export function Navigation() {
 
   return (
     <>
+      <div className="pointer-events-none fixed left-0 top-0 z-[60] h-0.5 w-full bg-transparent">
+        <div
+          className="h-full bg-primary transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
+      </div>
+
       {/* Logo — top left, desktop only */}
       <a
         href="#home"

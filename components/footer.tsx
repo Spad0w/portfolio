@@ -33,9 +33,9 @@ export function Footer() {
     <footer className="border-t border-border/50 bg-background">
       <div className="container py-20">
         <div className="mx-auto max-w-4xl space-y-10 text-center">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
             <Logo />
-            <div className="flex items-center justify-start gap-2 text-foreground opacity-40">
+            <div className="flex flex-col items-center justify-start gap-1 text-foreground opacity-40 sm:flex-row sm:items-center sm:gap-2">
               <div className="flex items-center gap-1.5">
                 <span
                   className="text-sm font-light"
@@ -47,7 +47,7 @@ export function Footer() {
                   className="text-sm font-light"
                   style={{ letterSpacing: '-0.04em', lineHeight: '105%' }}
                 >
-                  Eugene Xue
+                  Powered by Eugene Xue
                 </span>
               </div>
               <span
