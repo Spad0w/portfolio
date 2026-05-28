@@ -3,6 +3,8 @@
 import { getTechIcon, type TechIcon } from '@/lib/tech-icons'
 import { cn } from '@/lib/utils'
 
+const EXPERIENCE_URL = 'http://localhost:3000/#experience'
+
 interface TechItemProps {
   tech: TechIcon
 }
@@ -10,9 +12,7 @@ interface TechItemProps {
 function TechItem({ tech }: TechItemProps) {
   return (
     <a
-      href={tech.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={EXPERIENCE_URL}
       className={cn(
         'flex flex-col items-center gap-2 p-3 rounded-lg',
         'transition-all duration-300 ease-out',

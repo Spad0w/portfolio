@@ -259,7 +259,7 @@ export const experiencesCoCurricular: ExperienceItem[] = [
       'Presented practical defenses (prompt guardrails, response filtering) to reduce LLM exploitability to a panel of judges from TalTech and the University of Adelaide',
       'Worked closely with an international team of students at TalTech to analyze AI-security case studies across Estonia and Australia, producing actionable security insights',
     ],
-    technologies: ['LLM', 'HTTP', 'AI Security', 'Cybersecurity'],
+    technologies: ['LLM Security', 'Red/Blue Team', 'Deception Engineering', 'AI Governance'],
   },
   {
     company: 'University of Adelaide Singapore Students Association',
