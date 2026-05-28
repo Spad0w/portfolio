@@ -19,7 +19,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
           key={link.label}
           href={link.href}
           {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          className="group flex items-center justify-center gap-2 rounded-full border border-solid border-[rgba(15,23,41,0.2)] dark:border-[rgba(255,255,255,0.2)] bg-card/30 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-foreground/20 hover:bg-muted hover:text-foreground hover:scale-105"
+          className="group flex h-11 w-32 flex-none items-center justify-center gap-2 rounded-full border border-solid border-[rgba(15,23,41,0.2)] dark:border-[rgba(255,255,255,0.2)] bg-card/30 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-foreground/20 hover:bg-muted hover:text-foreground hover:scale-105"
         >
           <link.icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
           {link.label}
