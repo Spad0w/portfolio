@@ -70,7 +70,7 @@ export function ProjectCard({
           loop
           playsInline
           autoPlay
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-300 ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
         />
       )
     }
@@ -80,8 +80,8 @@ export function ProjectCard({
         src={mediaUrl}
         alt={title}
         className={cn(
-          "h-full w-full object-cover transition-transform duration-500",
-          !isGif && "group-hover:scale-110"
+          "h-full w-full object-cover transition-transform duration-300 ease-out",
+          !isGif && "[@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
         )}
       />
     )
@@ -89,7 +89,7 @@ export function ProjectCard({
 
   return (
     <div
-      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-surface-lowest shadow-ambient transition-all duration-500 hover:shadow-ambient-lg hover:bg-surface-low"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-surface-lowest shadow-ambient transition-[transform,box-shadow,background-color] duration-200 ease-out hover:shadow-ambient-lg hover:bg-surface-low"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -100,7 +100,7 @@ export function ProjectCard({
         {/* Overlay on hover */}
         <div
           className={cn(
-            'absolute inset-0 bg-secondary/90 backdrop-blur-sm transition-opacity duration-300 flex items-center justify-center gap-3',
+            'absolute inset-0 bg-secondary/90 backdrop-blur-sm transition-opacity duration-200 ease-out flex items-center justify-center gap-3',
             isHovered ? 'opacity-100' : 'opacity-0'
           )}
         >
@@ -109,7 +109,7 @@ export function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform duration-150 ease-out active:scale-[0.97] [@media(hover:hover)_and_(pointer:fine)]:hover:scale-110"
             >
               <Github className="h-5 w-5" />
             </a>
@@ -119,7 +119,7 @@ export function ProjectCard({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform hover:scale-110"
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-lowest text-foreground transition-transform duration-150 ease-out active:scale-[0.97] [@media(hover:hover)_and_(pointer:fine)]:hover:scale-110"
             >
               <ExternalLink className="h-5 w-5" />
             </a>

@@ -35,10 +35,10 @@ export function SlideUp({ children, className, delay = 0 }: SlideUpProps) {
     <div
       ref={ref}
       className={cn(
-        'transition-all duration-700 ease-out',
+        'transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-opacity motion-reduce:translate-y-0',
         isVisible
           ? 'translate-y-0 opacity-100'
-          : 'translate-y-8 opacity-0',
+          : 'translate-y-8 opacity-0 motion-reduce:opacity-0',
         className
       )}
       style={{ transitionDelay: `${delay}ms` }}

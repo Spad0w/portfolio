@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Manrope, Plus_Jakarta_Sans } from 'next/font/google'
 
 import './globals.css'
+import { personalInfo } from '@/lib/site'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -17,8 +18,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Eugene | Software Developer & Designer',
-  description: 'Showcasing my experiences, projects, and skills as a software developer',
+  title: `${personalInfo.name} | ${personalInfo.title}`,
+  description: personalInfo.heroBio,
 }
 
 export default function RootLayout({

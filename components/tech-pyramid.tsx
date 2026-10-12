@@ -3,7 +3,7 @@
 import { getTechIcon, type TechIcon } from '@/lib/tech-icons'
 import { cn } from '@/lib/utils'
 
-const EXPERIENCE_URL = 'http://localhost:3000/#experience'
+const EXPERIENCE_URL = '#experience'
 
 interface TechItemProps {
   tech: TechIcon
@@ -15,8 +15,8 @@ function TechItem({ tech }: TechItemProps) {
       href={EXPERIENCE_URL}
       className={cn(
         'flex flex-col items-center gap-2 p-3 rounded-lg',
-        'transition-all duration-300 ease-out',
-        'hover:scale-110 hover:bg-surface-high',
+        'transition-[transform,background-color] duration-200 ease-out',
+        'fine-hover-scale hover:bg-surface-high',
         'group'
       )}
       title={tech.name}
@@ -27,8 +27,8 @@ function TechItem({ tech }: TechItemProps) {
         className={cn(
           'w-10 h-10 sm:w-12 sm:h-12',
           'grayscale opacity-60',
-          'group-hover:grayscale-0 group-hover:opacity-100',
-          'transition-all duration-300'
+          '[@media(hover:hover)_and_(pointer:fine)]:group-hover:grayscale-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100',
+          'transition-[filter,opacity] duration-300 ease-out'
         )}
       />
       <span className="font-body text-xs text-tertiary group-hover:text-foreground transition-colors">
@@ -50,7 +50,7 @@ interface TechPyramidProps {
 
 function CategoryCard({ category }: { category: CategoryBox }) {
   return (
-    <div className="h-full rounded-lg bg-surface-lowest p-4 shadow-ambient transition-all duration-300 hover:shadow-ambient-lg">
+    <div className="h-full rounded-lg bg-surface-lowest p-4 shadow-ambient transition-[box-shadow] duration-200 ease-out hover:shadow-ambient-lg">
       <span className="label-sm block text-tertiary text-center mb-2">
         {category.label}
       </span>

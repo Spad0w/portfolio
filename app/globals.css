@@ -6,6 +6,10 @@
   .text-balance {
     text-wrap: balance;
   }
+  .nav-glass {
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+  }
   .heading-underline {
     position: relative;
     display: block;
@@ -28,6 +32,54 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 500;
+  }
+  .transition-ui {
+    transition-property: transform, opacity, background-color, border-color, color, box-shadow;
+    transition-duration: var(--duration-ui);
+    transition-timing-function: var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .fine-hover-scale:hover {
+      transform: scale(1.05);
+    }
+    .fine-hover-scale-sm:hover {
+      transform: scale(1.02);
+    }
+    .fine-hover-lift:hover {
+      transform: translateY(-4px);
+    }
+  }
+  .greeting-word {
+    background-image: linear-gradient(100deg, var(--greet-from, #4f46e5), var(--greet-to, #2563eb));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding-bottom: 0.06em;
+  }
+  .greeting-morning {
+    --greet-from: #4f46e5;
+    --greet-to: #0ea5e9;
+  }
+  .greeting-afternoon {
+    --greet-from: #4f46e5;
+    --greet-to: #2563eb;
+  }
+  .greeting-evening {
+    --greet-from: #4f46e5;
+    --greet-to: #9333ea;
+  }
+  .dark .greeting-morning {
+    --greet-from: #818cf8;
+    --greet-to: #7dd3fc;
+  }
+  .dark .greeting-afternoon {
+    --greet-from: #818cf8;
+    --greet-to: #93c5fd;
+  }
+  .dark .greeting-evening {
+    --greet-from: #a5b4fc;
+    --greet-to: #d8b4fe;
   }
 }
 
@@ -73,6 +125,12 @@
     --ring: 243 75% 59%;
     
     --radius: 0.5rem;                    /* Subtle radius per spec */
+
+    /* Motion tokens */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --duration-fast: 150ms;
+    --duration-ui: 200ms;
+    --duration-enter: 300ms;
   }
   
   .dark {
@@ -123,6 +181,11 @@
   html {
     scroll-behavior: smooth;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   .scroll-snap-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
@@ -131,25 +194,6 @@
   .scroll-snap-section {
     scroll-snap-align: start;
     scroll-snap-stop: always;
-  }
-}
-
-/* Navigation responsive styles */
-.desktop-nav {
-  display: none;
-}
-
-.mobile-nav {
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .desktop-nav {
-    display: block;
-  }
-  
-  .mobile-nav {
-    display: none;
   }
 }
 

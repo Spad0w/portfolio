@@ -17,9 +17,15 @@ export function ThemeToggle() {
     document.documentElement.classList.toggle('dark', initialTheme === 'dark')
   }, [])
 
+  const applyTheme = useCallback((newTheme: 'light' | 'dark') => {
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+  }, [])
+
   const toggleTheme = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (isAnimating) return
-    
+
     const button = e.currentTarget
     const rect = button.getBoundingClientRect()
     const x = rect.left + rect.width / 2
@@ -29,33 +35,31 @@ export function ThemeToggle() {
     const goingToDark = newTheme === 'dark'
     setIsAnimating(true)
 
-    // Check if View Transitions API is supported
-    if (document.startViewTransition) {
-      document.documentElement.style.setProperty('--transition-x', `${x}px`)
-      document.documentElement.style.setProperty('--transition-y', `${y}px`)
-      
-      // Add direction class before transition starts
-      document.documentElement.classList.add(goingToDark ? 'theme-transition-to-dark' : 'theme-transition-to-light')
-      
-      const transition = document.startViewTransition(() => {
-        setTheme(newTheme)
-        localStorage.setItem('theme', newTheme)
-        document.documentElement.classList.toggle('dark', newTheme === 'dark')
-      })
-
-      await transition.finished
-      
-      // Clean up direction classes
+    const cleanupTransitionClasses = () => {
       document.documentElement.classList.remove('theme-transition-to-dark', 'theme-transition-to-light')
-      setIsAnimating(false)
-    } else {
-      // Fallback for browsers without View Transitions API
-      setTheme(newTheme)
-      localStorage.setItem('theme', newTheme)
-      document.documentElement.classList.toggle('dark', newTheme === 'dark')
+    }
+
+    try {
+      if (document.startViewTransition) {
+        document.documentElement.style.setProperty('--transition-x', `${x}px`)
+        document.documentElement.style.setProperty('--transition-y', `${y}px`)
+        document.documentElement.classList.add(
+          goingToDark ? 'theme-transition-to-dark' : 'theme-transition-to-light'
+        )
+
+        const transition = document.startViewTransition(() => {
+          applyTheme(newTheme)
+        })
+
+        await transition.finished.catch(() => undefined)
+      } else {
+        applyTheme(newTheme)
+      }
+    } finally {
+      cleanupTransitionClasses()
       setIsAnimating(false)
     }
-  }, [theme, isAnimating])
+  }, [theme, isAnimating, applyTheme])
 
   return (
     <button
@@ -67,17 +71,17 @@ export function ThemeToggle() {
     >
       <div className="relative h-5 w-5">
         <Sun 
-          className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${
+          className={`absolute inset-0 h-5 w-5 transition-[transform,opacity] duration-200 ease-out ${
             theme === 'dark' 
               ? 'rotate-0 scale-100 opacity-100' 
-              : 'rotate-90 scale-0 opacity-0'
+              : 'rotate-90 scale-95 opacity-0'
           }`} 
         />
         <Moon 
-          className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${
+          className={`absolute inset-0 h-5 w-5 transition-[transform,opacity] duration-200 ease-out ${
             theme === 'light' 
               ? 'rotate-0 scale-100 opacity-100' 
-              : '-rotate-90 scale-0 opacity-0'
+              : '-rotate-90 scale-95 opacity-0'
           }`} 
         />
       </div>

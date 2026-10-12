@@ -1,5 +1,6 @@
 import { Code2, GraduationCap, MapPin, type LucideIcon } from 'lucide-react'
-import { about, education } from '@/lib/portfolio-data'
+import { about, education } from '@/lib/about-data'
+import { BioReadMore } from '@/components/bio-read-more'
 import { SlideUp } from '@/components/slide-up'
 import { cn } from '@/lib/utils'
 
@@ -14,7 +15,7 @@ function InfoCard({ icon: Icon, title, children, className }: InfoCardProps) {
   return (
     <div
       className={cn(
-        'rounded-lg bg-surface-lowest p-5 shadow-ambient transition-all duration-300',
+        'rounded-lg bg-surface-lowest p-4 shadow-ambient transition-[background-color,box-shadow] duration-200 ease-out',
         'hover:bg-surface-low hover:shadow-ambient-lg',
         className
       )}
@@ -36,16 +37,14 @@ export function AboutSection() {
   const bioParagraphs = about.introduction.filter((paragraph) => paragraph.trim().length > 0)
 
   return (
-    <section id="about" className="flex min-h-screen scroll-snap-section flex-col justify-center bg-surface-low">
-      <div className="container py-20">
-        <div className="mx-auto max-w-6xl space-y-12">
+    <section id="about" className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-[5.5rem] scroll-snap-section flex-col justify-center bg-surface-low">
+      <div className="container py-6 lg:py-8">
+        <div className="mx-auto max-w-6xl space-y-6">
           <SlideUp>
-            <div className="space-y-4 text-center">
-              <p className="label-sm text-primary">About Me</p>
-            </div>
+            <h2 className="heading-underline font-display text-4xl font-bold tracking-display">About Me</h2>
           </SlideUp>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,24rem)_1fr]">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-10 xl:grid-cols-[minmax(0,24rem)_1fr]">
             <div className="space-y-4">
               {education.map((edu, index) => (
                 <SlideUp key={edu.institution} delay={index * 100}>
@@ -54,9 +53,6 @@ export function AboutSection() {
                     <p className="font-body text-sm text-muted-foreground">
                       {edu.degree} • {edu.period}
                     </p>
-                    {edu.description ? (
-                      <p className="font-body pt-1 text-sm text-muted-foreground">{edu.description}</p>
-                    ) : null}
                     {edu.achievements.length > 0 ? (
                       <ul className="space-y-1 pt-2">
                         {edu.achievements.map((achievement) => (
@@ -93,10 +89,11 @@ export function AboutSection() {
               <div className="space-y-8">
                 <div className="space-y-4">
                   {bioParagraphs.map((paragraph, index) => (
-                    <p key={index} className="font-body text-base leading-relaxed text-muted-foreground sm:text-lg">
+                    <p key={index} className="font-body text-base leading-relaxed text-foreground">
                       {paragraph}
                     </p>
                   ))}
+                  <BioReadMore paragraphs={about.moreIntroduction} />
                 </div>
               </div>
             </SlideUp>
@@ -104,9 +101,9 @@ export function AboutSection() {
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {about.stats.map((stat, index) => (
-              <SlideUp key={stat.label} delay={index * 75}>
-                <div className="rounded-lg bg-surface-lowest px-4 py-6 text-center shadow-ambient transition-all duration-300 hover:bg-surface-low hover:shadow-ambient-lg">
-                  <p className="font-display text-3xl font-bold tracking-display text-primary sm:text-4xl">
+              <SlideUp key={stat.label} delay={index * 75} className="h-full">
+                <div className="flex h-full flex-col items-center justify-center rounded-lg bg-surface-lowest px-4 py-4 text-center shadow-ambient transition-[background-color,box-shadow] duration-200 ease-out hover:bg-surface-low hover:shadow-ambient-lg">
+                  <p className="font-display text-3xl font-bold tracking-display text-primary">
                     {stat.value}
                   </p>
                   <p className="label-sm mt-2 text-tertiary">{stat.label}</p>
