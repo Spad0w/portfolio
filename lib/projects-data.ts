@@ -1,5 +1,27 @@
 export const projects = [
   {
+    title: 'ServiceSG',
+    description: 'AI-assisted price comparison',
+    longDescription: 'Built backend data flows for ServiceScoutSG, a hackathon app for comparing Singapore service prices with AI FAQs and speech-to-text. Integrated Supabase storage, filtering, and conversational prompt refinement.',
+    technologies: ['Supabase', 'AI FAQ', 'Speech-to-Text'],
+    presentationUrl: 'https://www.youtube.com/watch?v=8cuA-skp3SA',
+    videoUrl: '/projects/servicesg/preview.mp4',
+    posterUrl: '/projects/servicesg/poster.webp',
+    previewLabel: 'ServiceSG product preview',
+  },
+  {
+    title: 'AskCodey',
+    description: 'AI-powered coding interview practice',
+    longDescription: 'Built frontend workflows for an AI-powered coding education platform with a question viewer, integrated editor, and LLM coaching. Developed UI state management, micro-interactions, and optimised PostgreSQL data fetching.',
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Vercel'],
+    presentationUrl: 'https://www.youtube.com/watch?v=AQkmkYWz_CM',
+    videoUrl: '/projects/askcodey/preview.mp4',
+    posterUrl: '/projects/askcodey/poster.webp',
+    previewLabel: 'AskCodey product preview',
+  },
+  // Hidden projects retained for future updates.
+  /*
+  {
     title: 'Repair.sg',
     description: 'Full-stack platform for maintenance services',
     longDescription: 'A comprehensive web application for both customers and administrators at leading maintenance service startup in Singapore',
@@ -46,4 +68,5 @@ export const projects = [
     githubUrl: 'https://github.com',
     liveUrl: 'https://example.com',
   },
+  */
 ]

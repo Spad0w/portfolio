@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ExternalLink, Github } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ProjectVideoPreview } from '@/components/project-video-preview'
 
 interface ProjectCardProps {
   title: string
@@ -13,6 +14,9 @@ interface ProjectCardProps {
   liveUrl?: string
   imageUrl?: string
   videoUrl?: string
+  presentationUrl?: string
+  posterUrl?: string
+  previewLabel?: string
 }
 
 function isVideoFile(url: string): boolean {
@@ -33,6 +37,9 @@ export function ProjectCard({
   liveUrl,
   imageUrl,
   videoUrl,
+  presentationUrl,
+  posterUrl,
+  previewLabel,
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -47,8 +54,12 @@ export function ProjectCard({
   const mediaUrl = videoUrl || imageUrl
   const isVideo = mediaUrl && isVideoFile(mediaUrl)
   const isGif = mediaUrl && isGifFile(mediaUrl)
+  const hasManagedPreview = Boolean(videoUrl && posterUrl && previewLabel)
 
   const renderMedia = () => {
+    if (videoUrl && posterUrl && previewLabel) {
+      return <ProjectVideoPreview src={videoUrl} poster={posterUrl} label={previewLabel} />
+    }
     if (!mediaUrl) {
       return (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted to-muted/50">
@@ -94,11 +105,11 @@ export function ProjectCard({
       onMouseLeave={handleMouseLeave}
     >
       {/* Media Section */}
-      <div className="relative h-48 overflow-hidden bg-surface">
+      <div className={cn('relative overflow-hidden bg-surface', hasManagedPreview ? 'aspect-video' : 'h-48')}>
         {renderMedia()}
         
         {/* Overlay on hover */}
-        <div
+        {!presentationUrl && <div
           className={cn(
             'absolute inset-0 bg-secondary/90 backdrop-blur-sm transition-opacity duration-200 ease-out flex items-center justify-center gap-3',
             isHovered ? 'opacity-100' : 'opacity-0'
@@ -124,7 +135,7 @@ export function ProjectCard({
               <ExternalLink className="h-5 w-5" />
             </a>
           )}
-        </div>
+        </div>}
       </div>
 
       {/* Content Section */}
@@ -155,8 +166,8 @@ export function ProjectCard({
         </div>
 
         <p
-          className="font-body h-[4.5rem] overflow-hidden text-sm leading-relaxed text-muted-foreground"
-          style={{
+          className={cn('font-body text-sm leading-relaxed text-muted-foreground', !presentationUrl && 'h-[4.5rem] overflow-hidden')}
+          style={presentationUrl ? undefined : {
             display: '-webkit-box',
             WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
@@ -176,6 +187,18 @@ export function ProjectCard({
             </span>
           ))}
         </div>
+        {presentationUrl && (
+          <a
+            href={presentationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center gap-2 self-start rounded-sm text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          >
+            Watch full demo
+            <ExternalLink aria-hidden="true" className="h-4 w-4" />
+            <span className="sr-only"> of {title} (opens in a new tab)</span>
+          </a>
+        )}
       </div>
     </div>
   )
